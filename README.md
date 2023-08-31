@@ -1,2 +1,3 @@
-# Helnet
-a social learning platform
+# Maisha-Djangoproject
+
+#Understand how is this project
