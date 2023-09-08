@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3#av2c6nptlbbb6^muqkchu&fe3wv&n$t2+g$v!ir-f5%doocb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -91,8 +91,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-
+# postgres://movies_8k05_user:6TcEIG7nKEy9fv0P7YuBvS0h3xsCWEXV@dpg-cjfsmkvr2b1s73fvvvig-a.oregon-postgres.render.com/movies_8k05
+DATABASES['default'] = dj_database_url.parse(
+    'postgres://movies_8k05_user:6TcEIG7nKEy9fv0P7YuBvS0h3xsCWEXV@dpg-cjfsmkvr2b1s73fvvvig-a.oregon-postgres.render.com/movies_8k05')
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
