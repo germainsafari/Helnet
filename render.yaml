@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: helnet
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn HELNET.wsgi:application
+    envVars:
+      - key: DATABASE_URL
+        value: postgresql://helnet_owner:npg_5OJcCE7khIvT@ep-aged-salad-a2t0peqj-pooler.eu-central-1.aws.neon.tech/helnet?sslmode=require
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: false
+      - key: ALLOWED_HOSTS
+        value: .onrender.com 
