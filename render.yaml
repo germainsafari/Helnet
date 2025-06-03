@@ -2,11 +2,13 @@ services:
   - type: web
     name: helnet
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --noinput
     startCommand: python manage.py migrate && gunicorn HELNET.wsgi:application
     envVars:
       - key: DATABASE_URL
-        value: postgresql://helnet_owner:npg_5OJcCE7khIvT@ep-aged-salad-a2t0peqj-pooler.eu-central-1.aws.neon.tech/helnet?sslmode=require
+        value: postgresql://neondb_owner:npg_E7bHWSMAOV2I@ep-polished-credit-a9sjp92b-pooler.gwc.azure.neon.tech/neondb?sslmode=require
       - key: SECRET_KEY
         generateValue: true
       - key: DEBUG

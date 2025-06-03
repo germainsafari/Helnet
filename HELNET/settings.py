@@ -81,17 +81,11 @@ WSGI_APPLICATION = 'HELNET.wsgi.application'
 
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'helnet',
-            'USER': 'helnet_owner',
-            'PASSWORD': 'npg_5OJcCE7khIvT',
-            'HOST': 'ep-aged-salad-a2t0peqj-pooler.eu-central-1.aws.neon.tech',
-            'PORT': '5432',
-            'OPTIONS': {
-                'sslmode': 'require',
-            },
-        }
+        'default': dj_database_url.config(
+            default=os.environ.get('DATABASE_URL'),
+            conn_max_age=600,
+            conn_health_checks=True,
+        )
     }
 else:
     DATABASES = {
